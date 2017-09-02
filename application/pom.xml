@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>br.com.browseframework</groupId>
+		<artifactId>browsefrw</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>br.com.browseframework</groupId>
+	<artifactId>browsefrw-application</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Browse Framework - Application</name>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			
+			<!-- Including AJDT Projects into Workspace -->
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-eclipse-plugin</artifactId>
+		        <version>2.9</version>
+		        <configuration>
+		          <ajdtVersion>1.5</ajdtVersion>
+		        </configuration>
+		    </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>${aspectj-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<complianceLevel>${java.version}</complianceLevel>
+					
+				</configuration>
+				<executions>
+					<execution>
+						 
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+	
+		<!-- BROWSE -->
+		<!-- Browse Framework - Base -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-base</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		<!-- Browse Framework - Hibernate -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-hibernate</artifactId>
+			<version>${browsefrw.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>javassist</artifactId>
+					<groupId>org.javassist</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Browse Framework - Util -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-util</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		
+		<!-- JAVAASSIST -->
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
+		</dependency>
+ 
+		<!-- UTILIZADO JUNTAMENTE COM O javassist -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-proxy</artifactId>
+			<version>${commons-proxy.version}</version>
+		</dependency>
+				
+		<!-- TODO: remover -->
+		<!-- BANCO DE DADOS -->
+		<!-- MySQL database driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.21</version>
+		</dependency>
+		
+	</dependencies>
+	
+</project>

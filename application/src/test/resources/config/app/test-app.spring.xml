@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/jee 
+						http://www.springframework.org/schema/jee/spring-jee.xsd">
+	
+	<!-- Permite o reconhecimento do @Aspect criando assim os proxys que fazem a ligação entre o aspecto e o objeto alvo. -->
+ 	<aop:aspectj-autoproxy/>
+ 	
+ 	<!-- Permite utilizar @Autowire, @Required e @Qualifier annotations. -->
+	<context:annotation-config/>
+
+	<!-- Permite compile-time e load-time weaving. -->
+	<context:spring-configured/>
+
+	<!-- Permite utilizar @Component, @Service, @Controller, etc.. annotations -->
+    <context:component-scan base-package="br.com.browseframework.application.db" />
+    <context:component-scan base-package="br.com.browseframework.application.engine" />
+    
+</beans>

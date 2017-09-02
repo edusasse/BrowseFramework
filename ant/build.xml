@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="Build Browse Framework" default="install-all" basedir="..">
+	<property environment="env" />
+
+	<condition property="mvn.exec" value="mvn.bat" else="mvn">
+		<os family="windows"/>
+	</condition>
+		
+	<!-- colocar o value vazio para executar os junits -->
+	<property name="skip.test" value="-Dmaven.test.skip=true"/>
+	
+	<!-- ################################ -->
+	<!--              INSTALL             -->
+	<!-- ################################ -->
+	<target name="install-all">
+		<exec executable="${mvn.exec}" failonerror="true" dir="./">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+
+	<target name="install-util">
+		<exec executable="${mvn.exec}" failonerror="true" dir="util">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+
+	<target name="install-base">
+		<exec executable="${mvn.exec}" failonerror="true" dir="base">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+
+	<target name="install-hibernate">
+		<exec executable="${mvn.exec}" failonerror="true" dir="hibernate">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+
+	<target name="install-report">
+		<exec executable="${mvn.exec}" failonerror="true" dir="report">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+	
+	<target name="install-jsf-primefaces">
+		<exec executable="${mvn.exec}" failonerror="true" dir="jsf-primefaces">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+	
+	<target name="install-application">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+	
+	<target name="install-application-md">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application-md">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+	
+	<target name="install-application-interfaces">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application-interfaces">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+	
+	<target name="install-jsf-application-eru">
+		<exec executable="${mvn.exec}" failonerror="true" dir="jsf-application-eru">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="${skip.test}" />
+		</exec>
+	</target>
+	
+	<target name="test-application">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application">
+			<arg value="test" />
+		</exec>
+	</target>	 
+	
+	<!-- ################################ -->
+	<!--         ECLIPSE INICIAL          -->
+	<!-- ################################ -->
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-all">
+		<antcall target="eclipse-inicial-util"/>
+		<antcall target="eclipse-inicial-base"/>
+		<antcall target="eclipse-inicial-hibernate"/>
+		<antcall target="eclipse-inicial-report"/>
+		<antcall target="eclipse-inicial-jsf-primefaces"/>
+		<antcall target="eclipse-inicial-application"/>
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-util">
+		<exec executable="${mvn.exec}" failonerror="true" dir="util">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+			
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-base">
+		<exec executable="${mvn.exec}" failonerror="true" dir="base">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-hibernate">
+		<exec executable="${mvn.exec}" failonerror="true" dir="hibernate">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-report">
+		<exec executable="${mvn.exec}" failonerror="true" dir="report">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-jsf-primefaces">
+		<exec executable="${mvn.exec}" failonerror="true" dir="jsf-primefaces">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-application">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-application-md">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application-md">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-application-interfaces">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application-interfaces">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-inicial-jsf-application-eru">
+		<exec executable="${mvn.exec}" failonerror="true" dir="jsf-application-eru">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+		</exec> 
+
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+
+	<!-- ################################ -->
+	<!--             ECLIPSE              -->
+	<!-- ################################ -->
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-all">
+		<antcall target="eclipse-util"/>
+		<antcall target="eclipse-base"/>
+		<antcall target="eclipse-hibernate"/>
+		<antcall target="eclipse-report"/>
+		<antcall target="eclipse-jsf-primefaces"/>
+		<antcall target="eclipse-application"/>
+	</target>
+	 
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-util">
+		<exec executable="${mvn.exec}" failonerror="true" dir="util">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target> 
+
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-base">
+		<exec executable="${mvn.exec}" failonerror="true" dir="base">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+		
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-hibernate">
+		<exec executable="${mvn.exec}" failonerror="true" dir="hibernate">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-report">
+		<exec executable="${mvn.exec}" failonerror="true" dir="report">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-application">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-application-md">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application-md">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-application-interfaces">
+		<exec executable="${mvn.exec}" failonerror="true" dir="application-interfaces">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-jsf-application-eru">
+		<exec executable="${mvn.exec}" failonerror="true" dir="jsf-application-eru">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target>
+	
+	<!-- gera os arquivos referentes ao (.project, .classpath, ...) -->
+	<target name="eclipse-jsf-primefaces">
+		<exec executable="${mvn.exec}" failonerror="true" dir="jsf-primefaces">
+			<arg value="eclipse:clean" />
+			<arg value="eclipse:eclipse" />
+			<arg value="-Declipse.useProjectReferences=false"/>
+			<arg value="-DdownloadSources=true"/>
+		</exec>
+		<!-- Apaga arquivo da pasta raiz que não é um projeto Eclipse -->
+		<delete file=".project" />
+	</target> 
+	
+	<target name="javadoc">
+		<exec executable="${mvn.exec}" failonerror="true" dir="./">
+			<arg value="javadoc:aggregate" />
+		</exec>
+	</target>	 
+	
+</project>

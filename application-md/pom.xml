@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>br.com.browseframework</groupId>
+		<artifactId>browsefrw</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>br.com.browseframework</groupId>
+	<artifactId>browsefrw-application-md</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Browse Framework - Application Multi-Database</name>
+	<description>Application Multi-Database domain and business</description>
+	
+	<build>
+		<plugins>
+		
+			<!-- O Plugin Compiler é usado para compilar os fontes do projeto. -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<!-- BROWSE-FRAMEWORK -->
+		<!-- BASE -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-base</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		<!-- HIBERNATE -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-hibernate</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		<!-- UTIL -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-util</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-infinispan</artifactId>
+			<version>${hibernate-core.version}</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.hibernate</groupId>
+		  <artifactId>hibernate-envers</artifactId>
+		  <version>${hibernate-core.version}</version>
+		</dependency>
+		
+		<!-- EhCache -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging.version}</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>${commons-digester.version}</version>
+		</dependency>					
+					
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+		 	<artifactId>groovy-all</artifactId>
+		 	<version>1.8.6</version>
+		</dependency>
+	
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports</artifactId>
+		    <version>${jasperreports.version}</version>
+		    <exclusions>
+				<exclusion>
+					<artifactId>bcprov-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- JODA-TIME -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>${jodatime.version}</version>
+		</dependency>
+		
+		<!-- JAVA MAIL -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${javax.mail.version}</version>
+		</dependency>
+		
+	</dependencies>
+	
+</project>

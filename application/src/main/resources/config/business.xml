@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+ 	 
+	<!-- C3P0 Parent -->
+	<bean 
+		id="dataSourceParent" 
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" 
+		destroy-method="close"
+		abstract="true">
+		<!-- Hibernate -->		  
+        <property name="driverClass" value="${jdbc.driverClassName}"/>  
+        <property name="jdbcUrl" value="${jdbc.url}"/>  
+        <property name="user" value="${c3p0.username}"/>  
+        <property name="password" value="${c3p0.password}"/>  
+        
+		<!--  C3P0 -->
+        <property name="idleConnectionTestPeriod" value="${c3p0.idleConnectionTestPeriod}"/>  
+        <property name="initialPoolSize" value="${c3p0.initialPoolSize}"/>  
+        <property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>  
+        <property name="maxPoolSize" value="${c3p0.maxPoolSize}"/>  
+        <property name="minPoolSize" value="${c3p0.minPoolSize}"/>  
+        <property name="maxStatements" value="${c3p0.maxStatements}"/>  
+        <property name="acquireIncrement" value="${c3p0.acquireIncrement}"/>  
+        <property name="checkoutTimeout" value="${c3p0.checkoutTimeout}"/>  
+        <property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"/>  
+        <property name="acquireRetryDelay" value="${c3p0.acquireRetryDelay}"/>  
+        <property name="acquireRetryAttempts" value="${c3p0.acquireRetryAttempts}"/>  
+        <property name="breakAfterAcquireFailure" value="${c3p0.breakAfterAcquireFailure}"/>  
+        <property name="maxIdleTimeExcessConnections" value="${c3p0.maxIdleTimeExcessConnections}"/>  
+        <property name="numHelperThreads" value="${c3p0.numHelperThreads}"/>
+        <!-- <property name="preferredTestQuery" value="${c3p0.preferredTestQuery}"/>
+        <property name="debugUnreturnedConnectionStackTraces" value="true"/> -->
+	</bean>
+ 
+ 	<bean id="mainDataSource" parent="dataSourceParent"/>
+	
+	<bean id="dataSource" class="br.com.browseframework.application.engine.CustomerRoutingDataSource">
+	 <property name="targetDataSources">
+		 <map key-type="java.lang.String">
+		   <entry key="DEFAULT" value-ref="mainDataSource"/>
+		 </map>
+	 </property>
+	</bean>
+	
+	<!-- ####################### -->
+	<!-- ANOTHER SESSION FACTORY -->
+	<!-- ####################### -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="mainDataSource" />
+		 
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.connection.autocommit">false</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- $#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+ 	
+	<bean id="browseApplicationSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<value>${packagesToScan}</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>				
+				<prop key="hibernate.connection.autocommit">false</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="browseApplicationTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="browseApplicationSessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="browseApplicationTransactionManager" />
+ 
+	
+</beans>

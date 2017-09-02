@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>br.com.browseframework</groupId>
+		<artifactId>browsefrw</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>br.com.browseframework</groupId>
+	<artifactId>browsefrw-util</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Browse Framework - Util</name>
+	<description>Helpful code items</description>
+	
+	<build>
+		<plugins>
+		
+			<!-- O Plugin Compiler é usado para compilar os fontes do projeto. -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
+	<dependencies>
+	
+		<!-- BROWSE -->
+		<!-- Browse Framework - Base -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-base</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		
+		<!-- PDF tool -->
+		<dependency>
+		   <groupId>org.apache.pdfbox</groupId>
+		   <artifactId>pdfbox</artifactId>
+		   <version>${pdfbox.version}</version>
+		</dependency>
+		
+	</dependencies>
+	
+</project>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>br.com.browseframework</groupId>
+		<artifactId>browsefrw</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>br.com.browseframework</groupId>
+	<artifactId>browsefrw-hibernate</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Browse Framework - Hibernate</name>
+	
+	<build>
+		<plugins>
+		
+			<!-- O Plugin Compiler é usado para compilar os fontes do projeto. -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
+	<dependencies>
+	
+		<!-- BROWSE -->
+		<!-- Browse Framework - Base -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-base</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		<!-- Browse Framework - Util -->
+		<dependency>
+			<groupId>br.com.browseframework</groupId>
+			<artifactId>browsefrw-util</artifactId>
+			<version>${browsefrw.version}</version>
+		</dependency>
+		
+		<!-- HIBERNATE -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-core.version}</version>
+		</dependency>
+		
+		<!-- SPRING -->
+		<!-- Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA, and iBatis. (depends on spring-core, spring-beans, spring-context, spring-tx) Define this if you need ORM (org.springframework.orm.*) -->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-orm</artifactId>
+		  <version>${spring.version}</version>
+		</dependency>
+		<!-- JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, spring-tx). Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*) -->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-jdbc</artifactId>
+		  <version>${spring.version}</version>
+		</dependency>
+		
+		<!-- ASM -->
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>${asm.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm-util</artifactId>
+			<version>${asm.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm-commons</artifactId>
+			<version>${asm.version}</version>
+		</dependency>
+		
+		<!-- COMMONS-DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp.version}</version>
+		</dependency>
+		
+		<!-- C3P0 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
+		</dependency>
+		
+	</dependencies>
+	
+</project>
